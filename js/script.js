@@ -231,3 +231,126 @@ document.addEventListener("keydown", (evento) => {
   botaoMenu?.classList.remove("ativo");
   document.body.classList.remove("menu-aberto");
 });
+
+
+/* ==========================================
+   PAGINAÇÃO DOS CERTIFICADOS
+========================================== */
+
+const certificados = Array.from(
+  document.querySelectorAll(".certificado-item")
+);
+
+const botaoAnteriorCertificados = document.querySelector(
+  ".pagina-certificado.anterior"
+);
+
+const botaoProximoCertificados = document.querySelector(
+  ".pagina-certificado.proxima"
+);
+
+const numerosPaginacao = document.querySelector(
+  ".numeros-paginacao"
+);
+
+const certificadosPorPagina = 6;
+let paginaAtualCertificados = 1;
+
+const totalPaginasCertificados = Math.ceil(
+  certificados.length / certificadosPorPagina
+);
+
+function criarNumerosPaginacao() {
+  if (!numerosPaginacao || totalPaginasCertificados === 0) {
+    return;
+  }
+
+  numerosPaginacao.innerHTML = "";
+
+  for (
+    let numeroPagina = 1;
+    numeroPagina <= totalPaginasCertificados;
+    numeroPagina++
+  ) {
+    const botaoNumero = document.createElement("button");
+
+    botaoNumero.type = "button";
+    botaoNumero.className = "numero-pagina-certificado";
+    botaoNumero.textContent = numeroPagina;
+
+    botaoNumero.setAttribute(
+      "aria-label",
+      `Ir para a página ${numeroPagina} dos certificados`
+    );
+
+    botaoNumero.addEventListener("click", () => {
+      paginaAtualCertificados = numeroPagina;
+      atualizarCertificados();
+    });
+
+    numerosPaginacao.appendChild(botaoNumero);
+  }
+}
+
+function atualizarCertificados() {
+  if (certificados.length === 0) {
+    return;
+  }
+
+  const inicio =
+    (paginaAtualCertificados - 1) * certificadosPorPagina;
+
+  const fim = inicio + certificadosPorPagina;
+
+  certificados.forEach((certificado, indice) => {
+    const certificadoVisivel =
+      indice >= inicio && indice < fim;
+
+    certificado.classList.toggle(
+      "certificado-visivel",
+      certificadoVisivel
+    );
+  });
+
+  document
+    .querySelectorAll(".numero-pagina-certificado")
+    .forEach((botao, indice) => {
+      botao.classList.toggle(
+        "ativo",
+        indice + 1 === paginaAtualCertificados
+      );
+    });
+
+  if (botaoAnteriorCertificados) {
+    botaoAnteriorCertificados.disabled =
+      paginaAtualCertificados === 1;
+  }
+
+  if (botaoProximoCertificados) {
+    botaoProximoCertificados.disabled =
+      paginaAtualCertificados === totalPaginasCertificados;
+  }
+}
+
+if (botaoAnteriorCertificados) {
+  botaoAnteriorCertificados.addEventListener("click", () => {
+    if (paginaAtualCertificados > 1) {
+      paginaAtualCertificados--;
+      atualizarCertificados();
+    }
+  });
+}
+
+if (botaoProximoCertificados) {
+  botaoProximoCertificados.addEventListener("click", () => {
+    if (paginaAtualCertificados < totalPaginasCertificados) {
+      paginaAtualCertificados++;
+      atualizarCertificados();
+    }
+  });
+}
+
+if (certificados.length > 0) {
+  criarNumerosPaginacao();
+  atualizarCertificados();
+}

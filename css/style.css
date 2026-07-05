@@ -2950,3 +2950,141 @@ body {
   color: #050505;
   transform: translate(2px, -2px);
 }
+
+/* BOTÃO INDIVIDUAL DOS CERTIFICADOS */
+
+.certificado-conteudo {
+  width: 100%;
+}
+
+.ver-certificado {
+  width: fit-content;
+  margin-top: 16px;
+  padding: 10px 14px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--branco);
+  border: 1px solid rgba(225, 58, 58, 0.3);
+
+  font-family: var(--fonte-editorial);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.ver-certificado span {
+  color: #e13a3a;
+  font-size: 0.9rem;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.ver-certificado:hover {
+  color: #050505;
+  background: #e13a3a;
+  border-color: #e13a3a;
+  transform: translateY(-2px);
+}
+
+.ver-certificado:hover span {
+  color: #050505;
+  transform: translate(2px, -2px);
+}
+
+/* ==========================================
+   PAGINAÇÃO DOS CERTIFICADOS
+========================================== */
+
+.certificado-item {
+  display: none;
+}
+
+.certificado-item.certificado-visivel {
+  display: grid;
+}
+
+.paginacao-certificados {
+  margin-top: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.numeros-paginacao {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagina-certificado,
+.numero-pagina-certificado {
+  min-width: 42px;
+  height: 42px;
+  padding: 0 12px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--branco);
+  background: transparent;
+
+  border: 1px solid rgba(225, 58, 58, 0.35);
+
+  font-family: var(--fonte-editorial);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+
+  cursor: pointer;
+
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.pagina-certificado:hover,
+.numero-pagina-certificado:hover,
+.numero-pagina-certificado.ativo {
+  color: #050505;
+  background: #e13a3a;
+  border-color: #e13a3a;
+}
+
+.pagina-certificado:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.pagina-certificado:disabled:hover {
+  color: var(--branco);
+  background: transparent;
+  border-color: rgba(225, 58, 58, 0.35);
+}
+
+@media (max-width: 650px) {
+  .paginacao-certificados {
+    gap: 8px;
+  }
+
+  .pagina-certificado,
+  .numero-pagina-certificado {
+    min-width: 38px;
+    height: 38px;
+    padding: 0 10px;
+  }
+}
