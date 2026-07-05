@@ -159,30 +159,34 @@ if (hero) {
   });
 
   hero.addEventListener("mouseleave", () => {
-    hero.style.backgroundPosition = "center";
+    if (window.innerWidth > 950) {
+      hero.style.backgroundPosition = "center";
+    }
   });
 }
 
 
 /* ROLAGEM SUAVE PARA LINKS INTERNOS */
 
-document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach((link) => {
-  link.addEventListener("click", (evento) => {
-    const destinoId = link.getAttribute("href");
-    const destino = document.querySelector(destinoId);
+document
+  .querySelectorAll('a[href^="#"]:not([href="#"])')
+  .forEach((link) => {
+    link.addEventListener("click", (evento) => {
+      const destinoId = link.getAttribute("href");
+      const destino = document.querySelector(destinoId);
 
-    if (!destino) {
-      return;
-    }
+      if (!destino) {
+        return;
+      }
 
-    evento.preventDefault();
+      evento.preventDefault();
 
-    destino.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+      destino.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
     });
   });
-});
 
 
 /* IMPEDE LINKS VAZIOS DE RECARREGAREM A PÁGINA */
