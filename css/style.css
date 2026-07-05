@@ -2895,3 +2895,58 @@ body {
       ) !important;
   }
 }
+
+/* ==========================================
+   BOTÃO INDIVIDUAL DOS CERTIFICADOS
+========================================== */
+
+.certificado-conteudo {
+  width: 100%;
+}
+
+.ver-certificado {
+  width: fit-content;
+  margin-top: 16px;
+  padding: 10px 14px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--branco);
+
+  border: 1px solid rgba(225, 58, 58, 0.3);
+
+  font-family: var(--fonte-editorial);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.ver-certificado span {
+  color: #e13a3a;
+  font-size: 0.9rem;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.ver-certificado:hover {
+  color: #050505;
+  background: #e13a3a;
+  border-color: #e13a3a;
+
+  transform: translateY(-2px);
+}
+
+.ver-certificado:hover span {
+  color: #050505;
+  transform: translate(2px, -2px);
+}
